@@ -255,7 +255,7 @@ int main(int argc, char *argv[]) {
     return 1;
 
   RGBMatrix m(&io);
-    
+ #ifndef CLEARONLY
   RGBMatrixManipulator *image_gen = NULL;
   switch (demo) {
   case 0:
@@ -290,19 +290,21 @@ int main(int argc, char *argv[]) {
   updater->Start(10);  // high priority
 
   image_gen->Start();
-
+/*
   // Things are set up. Just wait for <RETURN> to be pressed.
   printf("Press <RETURN> to exit and reset LEDs\n");
   getchar();
-
+*/
+//wait here my dear thread
+  while(1);
   // Stopping threads and wait for them to join.
   delete image_gen;
   delete updater;
-
+#else
   // Final thing before exit: clear screen and update once, so that
   // we don't have random pixels burn
   m.ClearScreen();
   m.UpdateScreen();
-
+#endif
   return 0;
 }
