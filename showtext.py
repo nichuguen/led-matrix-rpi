@@ -49,8 +49,8 @@ def showOnLEDMatrix(textsTuple):
 	return os.spawnl( os.P_NOWAIT, "./led-matrix", "./led-matrix", "1","test.ppm")
 
 if __name__ == "__main__":
-	text = (createTextColor("QWERTZUIOPASDFGHJKLYXCVBNM", (255, 0, 0)), None)
+	text = (createTextColor("KOM TM LA BIT", (0, 255, 255)), None)
 	pid = showOnLEDMatrix(text)
-	time.sleep(10)
+	raw_input("Press Enter to continue...")
 	os.kill(pid, signal.SIGKILL)
 	clearLEDMatrix()
