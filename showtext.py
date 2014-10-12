@@ -1,6 +1,7 @@
 import os
 import time
 import signal
+import localconstants
 from PIL import ImageFont
 from PIL import Image
 from PIL import ImageDraw
@@ -12,7 +13,7 @@ def createTextColor( text, color):
 
 def clearLEDMatrix():
 	'''clears the LED matrix'''
-	os.system("./test-clear")
+	os.system(localconstants.clear)
 
 def showOnLEDMatrix(textsTuple):
 	'''shows the texts on the LED matrix 
@@ -46,7 +47,7 @@ def showOnLEDMatrix(textsTuple):
 			x = x + font.getsize(t)[0]
 
 	im.save("test.ppm")
-	return os.spawnl( os.P_NOWAIT, "./led-matrix", "./led-matrix", "1","test.ppm")
+	return os.spawnl( os.P_NOWAIT, localconstants.led-matrix, localconstants.led-matrix, "1","test.ppm")
 
 if __name__ == "__main__":
 	text = (createTextColor("KOM TM LA BIT", (0, 255, 255)), None)
