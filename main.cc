@@ -211,7 +211,9 @@ public:
           matrix_->SetPixel(disp_x, disp_y, p.red, p.green, p.blue);
         }
       }
+#ifndef NOSCROLL
       ++horizontal_position_;
+#endif
     }
   }
 
