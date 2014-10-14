@@ -18,15 +18,12 @@ def decode(receivedString):
 		os.kill(pid, signal.SIGKILL)
 	showtext.clearLEDMatrix()
 	myList = receivedString.split(";")
-	if len(myList) == 3:
-		myList[0] = "Song: "+myList[0]
-		myList[1] = "Artist: "+myList[1]
-		myList[2] = "Album: "+myList[2]
-	myTupleList = list()
-	for myString in myList:
-		myTupleList.append(showtext.createTextColor(myString, (255, 0,0)))
-		print( myString )
-	pid = showtext.showOnLEDMatrix(tuple(myTupleList))
+	if len(myList)==3:
+		myTupleList = list()
+		for members in myList:
+			membersList = members.split("*")
+			myTupleList.append(showtext.createTextColor(membersList[0],(membersList[1],membersList[2],membersList[3])))	
+		pid = showtext.showOnLEDMatrix(tuple(myTupleList))
 	print("")
 
 def save(receivedString):
