@@ -47,7 +47,7 @@ def showOnLEDMatrix(textsTuple):
 			x = x + font.getsize(t)[0]
 
 	im.save("test.ppm")
-	return os.spawnl( os.P_NOWAIT, localconstants.led-matrix, localconstants.led-matrix, "1","test.ppm")
+	return os.spawnl( os.P_NOWAIT, localconstants.ledmatrix, localconstants.ledmatrix, "1","test.ppm")
 
 if __name__ == "__main__":
 	text = (createTextColor("KOM TM LA BIT", (0, 255, 255)), None)
