@@ -22,7 +22,7 @@ def decode(receivedString):
 		myTupleList = list()
 		for members in myList:
 			membersList = members.split("*")
-			myTupleList.append(showtext.createTextColor(membersList[0],(membersList[1],membersList[2],membersList[3])))	
+			myTupleList.append(showtext.createTextColor(membersList[0],(int(membersList[1]),int(membersList[2]),int(membersList[3]))))	
 		pid = showtext.showOnLEDMatrix(tuple(myTupleList))
 	print("")
 
