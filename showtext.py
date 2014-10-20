@@ -51,20 +51,20 @@ def showOnLEDMatrix(textsTuple):
 	return os.spawnl( os.P_NOWAIT, localconstants.ledmatrix, localconstants.ledmatrix, "1","test.ppm")
 
 if __name__ == "__main__":
-    if len(sys.args) == 5:
+    if len(sys.argv) == 5:
         try:
-            textString = str(sys.arg[1])
-            colR = int(sys.arg[2])
-            colG = int(sys.arg[3])
-            colB = int(sys.arg[4])
+            textString = str(sys.argv[1])
+            colR = int(sys.argv[2])
+            colG = int(sys.argv[3])
+            colB = int(sys.argv[4])
             text = (createTextColor(textString, (colR, colG, colB)), None)
             pid = showOnLEDMatrix(text)
             print "{ PID: %d }" % pid
         except:
             print "Error while parsing args."
             
-    elif len(sys.args) == 2:
-        if sys.args[1] == 'clear':
+    elif len(sys.argv) == 2:
+        if sys.argv[1] == 'clear':
             clearLEDMatrix()
     else:
         text = (createTextColor("KOM TM LA BIT", (0, 255, 255)), None)
