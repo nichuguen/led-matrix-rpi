@@ -2,6 +2,7 @@ import os
 import time
 import signal
 import localconstants
+import sys
 from PIL import ImageFont
 from PIL import Image
 from PIL import ImageDraw
@@ -50,8 +51,24 @@ def showOnLEDMatrix(textsTuple):
 	return os.spawnl( os.P_NOWAIT, localconstants.ledmatrix, localconstants.ledmatrix, "1","test.ppm")
 
 if __name__ == "__main__":
-	text = (createTextColor("KOM TM LA BIT", (0, 255, 255)), None)
-	pid = showOnLEDMatrix(text)
-	raw_input("Press Enter to continue...")
-	os.kill(pid, signal.SIGKILL)
-	clearLEDMatrix()
+    if len(sys.args) == 5:
+        try:
+            textString = str(sys.arg[1])
+            colR = int(sys.arg[2])
+            colG = int(sys.arg[3])
+            colB = int(sys.arg[4])
+            text = (createTextColor(textString, (colR, colG, colB)), None)
+            pid = showOnLEDMatrix(text)
+            print "{ PID: %d }" % pid
+        except:
+            print "Error while parsing args."
+            
+    elif len(sys.args) == 2:
+        if sys.args[1] == 'clear':
+            clearLEDMatrix()
+    else:
+        text = (createTextColor("KOM TM LA BIT", (0, 255, 255)), None)
+        pid = showOnLEDMatrix(text)
+        raw_input("Press Enter to continue...")
+        os.kill(pid, signal.SIGKILL)
+        clearLEDMatrix()
