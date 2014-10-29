@@ -1,2 +1,2 @@
-clear = "./test-clear"
-ledmatrix = "./led-matrix"
+clear = "../c/test-clear"
+ledmatrix = "../c/led-matrix"
