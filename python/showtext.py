@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import os
 import time
 import signal
@@ -49,26 +50,62 @@ def showOnLEDMatrix(textsTuple):
 
 	im.save("test.ppm")
 	return os.spawnl( os.P_NOWAIT, localconstants.ledmatrix, localconstants.ledmatrix, "1","test.ppm")
+    
+def encodeAndPrint(args):
+    usage = """
+        <str> <r> <g> <b>: displays the <str> with RGB color <r><g><b>
+        """
+    try:
+        textString = str(args[1])
+        colR = int(args[2])
+        colG = int(args[3])
+        colB = int(args[4])
+        text = (createTextColor(textString, (colR, colG, colB)), None)
+        pid = showOnLEDMatrix(text)
+        print "{ PID: %d }" % pid
+    except:
+        print usage
+        
+def killclearpid(pid):
+    usage = """
+        killclear <pid>: kills the process <pid> and clears the board
+        """
+    os.kill(pid, signal.SIGKILL)
+    clearLEDMatrix()
+    
+def killclearargs(args):
+    usage = """
+        killclear <pid>: kills the process <pid> and clears the board
+        """
+    if args[1] == 'killclear':
+        pid = 0
+        try:
+            pid = int(args[2])
+            killclearpid(pid)
+        except:
+            print(usage)
+                
+def default():
+    text = (createTextColor("KOM TM LA BIT", (0, 255, 255)), None)
+    pid = showOnLEDMatrix(text)
+    raw_input("Press Enter to continue...")
+    os.kill(pid, signal.SIGKILL)
+    clearLEDMatrix()
 
 if __name__ == "__main__":
+    usage = ''' 
+        clear: clears the board
+        <str> <r> <g> <b>: displays the <str> with RGB color <r><g><b>
+        killclear <pid>: kills the process <pid> and clears the board
+        '''
     if len(sys.argv) == 5:
-        try:
-            textString = str(sys.argv[1])
-            colR = int(sys.argv[2])
-            colG = int(sys.argv[3])
-            colB = int(sys.argv[4])
-            text = (createTextColor(textString, (colR, colG, colB)), None)
-            pid = showOnLEDMatrix(text)
-            print "{ PID: %d }" % pid
-        except:
-            print "Error while parsing args."
-            
+        encodeAndPrint(sys.argv)            
     elif len(sys.argv) == 2:
         if sys.argv[1] == 'clear':
             clearLEDMatrix()
+        else:
+            print (usage)
+    elif len(sys.argv) == 3:
+        killclearargs(sys.argv)
     else:
-        text = (createTextColor("KOM TM LA BIT", (0, 255, 255)), None)
-        pid = showOnLEDMatrix(text)
-        raw_input("Press Enter to continue...")
-        os.kill(pid, signal.SIGKILL)
-        clearLEDMatrix()
+        default()

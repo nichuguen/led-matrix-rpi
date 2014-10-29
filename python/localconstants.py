@@ -1,3 +1,3 @@
-pathprog = "/home/pi/led-matrix-rpi/"
-clear = pathprog + "c/test-clear"
-ledmatrix = pathprog + "c/led-matrix"
+pathprog = "/home/pi/led-matrix-rpi/c"
+clear = pathprog + "/test-clear"
+ledmatrix = pathprog + "/led-matrix"
