@@ -1,2 +1,3 @@
-clear = "../c/test-clear"
-ledmatrix = "../c/led-matrix"
+pathprog = "/home/pi/led-matrix-rpi/"
+clear = pathprog + "c/test-clear"
+ledmatrix = pathprog + "c/led-matrix"
