@@ -188,7 +188,6 @@ public:
     }
 #undef EXIT_WITH_MSG
     fclose(f);
-    fprintf(stderr, "Read image with %dx%d\n", width_, height_);
     horizontal_position_ = 0;
     return true;
   }
@@ -246,11 +245,6 @@ private:
 };
 
 int main(int argc, char *argv[]) {
-  int demo = 0;
-  if (argc > 1) {
-    demo = atoi(argv[1]);
-  }
-  fprintf(stderr, "Using demo %d\n", demo);
 
   GPIO io;
   if (!io.Init())
@@ -258,6 +252,10 @@ int main(int argc, char *argv[]) {
 
   RGBMatrix m(&io);
  #ifndef CLEARONLY
+  int demo = 0;
+  if (argc > 1) {
+    demo = atoi(argv[1]);
+  }
   RGBMatrixManipulator *image_gen = NULL;
   switch (demo) {
   case 0:
