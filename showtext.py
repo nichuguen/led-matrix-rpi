@@ -2,9 +2,12 @@ import os
 import time
 import signal
 import localconstants
-from PIL import ImageFont
-from PIL import Image
-from PIL import ImageDraw
+import ImageFont
+import Image
+import ImageDraw
+#from PIL import ImageFont
+#from PIL import Image
+#from PIL import ImageDraw
 
 def createTextColor( text, color):
 	'''returns a tuple containing the text and the color. the color attribute must be a tuple: (R, G, B)'''
