@@ -1,0 +1,9 @@
+[Plugin]
+Loader=python
+Module=rmnplugin
+IAge=2
+Name=Python test plugin
+Description=A python test plugin
+Authors=Nicolas Huguenin <nicolas@nicolas-huguenin.ch>, Karim Luy <kluy@gmail.com>
+Copyright=Copyright © 2015 Nicolas Huguenin
+Website=http://site.nicolas-huguenin.ch

@@ -1,0 +1,9 @@
+[Plugin]
+Loader=python3
+Module=rmnplugin
+IAge=2
+Name=RMN LED Displayer
+Description=Displays currently playing song on one or more LED displays.
+Authors=Nicolas Huguenin <nicolas@nicolas-huguenin.ch>, Karim Luy <kluy@gmail.com>
+Copyright=Copyright © 2015 Nicolas Huguenin, Karim Luy
+Website=http://site.nicolas-huguenin.ch
