@@ -17,7 +17,7 @@ def clearLEDMatrix():
     '''clears the LED matrix'''
     os.system(localconstants.clear)
 
-def showOnLEDMatrix(textsTuple):
+def showOnLEDMatrix(textsTuple, endof_string_space = True):
     '''shows the texts on the LED matrix 
     the text must be a tuple of (text, color)
     returns the PID of the process displaying the text'''
@@ -38,8 +38,11 @@ def showOnLEDMatrix(textsTuple):
     width, ignore = font.getsize(all_text)
     print(width)
 
+    offset = 0
+    if endof_string_space:
+        offset = 30
 
-    im = Image.new("RGB", (width + 30, 16), "black")
+    im = Image.new("RGB", (width + offset, 16), "black")
     draw = ImageDraw.Draw(im)
 
     x = 0;
@@ -51,9 +54,9 @@ def showOnLEDMatrix(textsTuple):
             c = text_color_pair[1]
             draw.text((x, 0), t, c, font=font)
             x = x + font.getsize(t)[0]
-
-    im.save("test.ppm")
-    return os.spawnl( os.P_NOWAIT, localconstants.ledmatrix, localconstants.ledmatrix, "1","test.ppm")
+    filename = localconstants.pathprog + "/test.ppm"
+    im.save(filename)
+    return os.spawnl( os.P_NOWAIT, localconstants.ledmatrix, localconstants.ledmatrix, "1",filename)
     
 def encodeAndPrint(args):
     usage = """
