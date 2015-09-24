@@ -4,7 +4,7 @@ import os
 import signal
 
 #global tuple relating text to its color
-color = {'artist': (255, 0, 0), 'album': (130, 52, 0), 'title': (0, 255, 0), 'message': (255, 255, 255)}
+color = {'artist': (255, 0, 0), 'album': (255, 255, 0), 'title': (0, 255, 0), 'message': (255, 255, 255)}
 app = Flask(__name__)
 pid = 0
 
