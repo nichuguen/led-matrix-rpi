@@ -1,0 +1,25 @@
+- interface web 1/2
+
+- isolation yolo
+- gestion derreurs
+- place pour les ecrans
+
+- revue du code
+- push/pull
+
+- scripts:
+	- kill
+	- launch -- (boot?)
+	- clear
+- quand flask termine, clean/clear tout le bordel
+- refermer le pc aussi 
+- nmap script
+
+
+materiel:
+
+	- 3 ethernet 1s 2l
+	- alims:
+		- 2 LED, 1 usbhub, 1 pc-ubuntu, 1 ecran-ubuntu, 1 routeur
+	- electric extension corde
+	- 3 entry multiprise
