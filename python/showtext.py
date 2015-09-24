@@ -16,6 +16,10 @@ def createTextColor( text, color):
 def clearLEDMatrix():
     '''clears the LED matrix'''
     os.system(localconstants.clear)
+    
+def showRMNLEDMatrix():
+	filename = localconstants.pathprog + "/RMN.ppm"
+	return os.spawnl( os.P_NOWAIT, localconstants.ledmatrix, localconstants.ledmatrix, "1",filename)
 
 def showOnLEDMatrix(textsTuple, endof_string_space = True):
     '''shows the texts on the LED matrix 

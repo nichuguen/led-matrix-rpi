@@ -65,6 +65,12 @@ def home():
 			if message is not None:
 				pid = showtext.showOnLEDMatrix([(message, color['message'])])
 				dict_return['result'] = True
+		elif message_type == "rmn":
+			clear_led()
+			pid = showtext.showRMNLEDMatrix()
+			dict_return['type'] = 'rmn'
+			dict_return['result'] = True
+			
 		if request.form.get('redirect', None) is None:
 			return jsonify(**dict_return)
 		else:
