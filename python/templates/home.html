@@ -1,24 +1,61 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
-<p class="lead"> Ecrire un message</p>
- <form action="{{url_for('home')}}" method="post">
- <input type="hidden" name="type" value="message"/>
- <div class="form-group">
- <label for="message">Message:</label>
- <input type="text" name="message" width="50" placeholder="Message..." class="form-control"/>
- </div>
- <button type="submit" class="btn btn-default">Envoyer</button>
- </form>
- </div>
- <br/>
- <div class="container">
- <p class="lead">Effacer l'écran</p>
-  <form action="{{url_for('home')}}" method="post">
-	  <input type="hidden" name="type" value="stop"/>
-	  <button type="submit" class="btn btn-default">Effacer</button>
-</form></div>
+	<p class="lead">
+		Permet d'afficher un message sur un écran LED.
+	</p>
+</div>
 <div class="container">
+<h2 class=""> Ecrire un message</h2>
+<p class="lead">Ecrit un simple message sur l'écran.</p>
+<form class="form-horizontal" action="{{url_for('home')}}" method="post">
+<input type="hidden" name="type" value="message"/>
+<input type="hidden" name="redirect" value="true"/>
+<div class="form-group">
+<label for="message" class="col-sm-2 control-label">Message:</label><div class="col-sm-10">
+<input type="text" name="message" width="50" placeholder="Message..." class="form-control"/>
+</div>
+</div><div class="col-sm-offset-2 col-sm-10">
+<button type="submit" class="btn btn-default">Envoyer</button>
+</div>
+</form>
+</div>
 
+<div class="container">
+<h2 class="">Effacer l'écran</h2>
+<p class="lead">Permet d'effacer le message sur l'écran.</p>
+<form class="form-horizontal" action="{{url_for('home')}}" method="post">
+<input type="hidden" name="type" value="stop"/>
+<input type="hidden" name="redirect" value="true"/>
+<div class="col-sm-offset-2 col-sm-10">
+<button type="submit" class="btn btn-default">Effacer</button>
+</div>
+</form></div>
+
+
+<div class="container">
+<h2 class="">Chanson</h2>
+<p class="lead"> Si les trois champs sont remplis, affiche les informations de la chanson en couleurs différentes.</p>
+<form class="form-horizontal" action="{{url_for('home')}}" method="post">
+<input type="hidden" name="type" value="song"/>
+<input type="hidden" name="redirect" value="true"/>
+<div class="form-group">
+<label for="title" class="col-sm-2 control-label">Titre:</label><div class="col-sm-10">
+<input type="text" name="title" placeholder="Titre" class="form-control"/>
+</div>
+</div>
+<div class="form-group">
+<label for="message" class="col-sm-2 control-label">Artiste:</label><div class="col-sm-10">
+<input type="text" name="artist" placeholder="Artiste" class="form-control"/>
+</div>
+</div>
+<div class="form-group">
+<label for="message" class="col-sm-2 control-label">Album: </label><div class="col-sm-10">
+<input type="text" name="album" placeholder="Album" class="form-control"/>
+</div>
+</div> <div class="col-sm-offset-2 col-sm-10">
+<button type="submit" class="btn btn-default">Envoyer</button>
+</div>
+</form>
 </div>
 {% endblock %}

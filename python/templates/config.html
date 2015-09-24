@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block window_title %}
+	Pi LED Config
+{% endblock %}
+{% block page_title %}
+	Configuration
+{% endblock %}
+{% block content %}
+<div class="container">
+	<p class="lead">
+		Configuration basique de l'écran.
+	</p>
+</div>
+<div class="container">
+<h2 class=""> Couleurs</h2>
+<p class="lead">Permet de changer les couleurs des messages.</p>
+<form class="form-horizontal" action="{{url_for('config')}}" method="post">
+	<div class="form-group">
+		<label for="key" class="col-sm-2 control-label">Couleur à changer:</label>
+		    <div class="col-sm-10">
+	<select name="key" class="form-control">
+{% for key in keys %}
+    <option value="{{ key }}" SELECTED>{{ key }}</option>
+{% endfor %}
+</select></div>
+</div>
+ <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="r" checked> Rouge
+        </label>
+      </div>
+    </div>
+  </div>
+   <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="g" checked> Vert
+        </label>
+      </div>
+    </div>
+  </div>
+ <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="b" checked> Bleu
+        </label>
+      </div>
+    </div>
+  </div>
+<div class="col-sm-offset-2 col-sm-10">
+<button type="submit" class="btn btn-default">Envoyer</button>
+</form>
+</div>
+</div>
+{% endblock %}
