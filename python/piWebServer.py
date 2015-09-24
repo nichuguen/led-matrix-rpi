@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, url_for, render_template
+from flask import Flask, request, jsonify, url_for, render_template, redirect
 import showtext
 import os
 import signal
@@ -12,6 +12,9 @@ def change_color(color_tuple, key):
     # color_tuple is a tuple (R,G,B) where RGB are ints
     # key defines which of the three stuffs to change
     global color
+    for value in color_tuple:
+		if value > 255 or value < 0:
+			return
     if key in color.keys():
         color[key] = color_tuple
 
@@ -34,7 +37,7 @@ def clear_led():
 @app.route("/", methods=['GET', 'POST'])
 def home():
     if request.method == 'GET':
-        return render_template("home.html", content="yolo content")
+        return render_template("home.html")
     elif request.method == 'POST':
 		dict_return = {'type': None, 'result': False}
 		message_type = request.form.get('type', None)
@@ -61,9 +64,30 @@ def home():
 			if message is not None:
 				pid = showtext.showOnLEDMatrix([(message, color['message'])])
 				dict_return['result'] = True
-		return jsonify(**dict_return)
-
-
+		if request.form.get('redirect', None) is None:
+			return jsonify(**dict_return)
+		else:
+			return redirect(url_for("home"))
+			
+@app.route("/config", methods=['GET', 'POST'])
+def config():
+	global color
+	if request.method == 'GET':
+		return render_template("config.html", keys= color.keys() )
+	elif request.method == 'POST':
+		key = request.form.get('key')
+		if key is not None:
+			if key in color.keys():
+				r = request.form.get('r')
+				g = request.form.get('g')
+				b = request.form.get('b')
+				if r is not None and g is not None and b is not None:
+					r = int(r)
+					g = int(g)
+					b = int(b)
+					change_color((r, g, b), key)
+		return redirect(url_for("config"))
+		
 if __name__ == "__main__":
     app.debug = True
     app.run(host = "0.0.0.0")
