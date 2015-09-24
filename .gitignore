@@ -1,3 +1,5 @@
 # Byte-compiled
 *.py[cod]
 *.run
+*.ppm
+*.o
