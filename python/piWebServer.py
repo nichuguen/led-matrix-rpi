@@ -32,6 +32,7 @@ def clear_led():
     global pid
     if pid != 0:
         os.kill(pid, signal.SIGKILL)
+        pid = 0
     showtext.clearLEDMatrix()
 
 @app.route("/", methods=['GET', 'POST'])
@@ -81,13 +82,20 @@ def config():
 				r = request.form.get('r')
 				g = request.form.get('g')
 				b = request.form.get('b')
-				if r is not None and g is not None and b is not None:
-					r = int(r)
-					g = int(g)
-					b = int(b)
-					change_color((r, g, b), key)
+				print((r,g,b))
+				r = int(r is not None)*255
+				g = int(g is not None)*255
+				b = int(b is not None)*255
+				print((r,g,b))
+				change_color((r, g, b), key)
 		return redirect(url_for("config"))
 		
 if __name__ == "__main__":
-    app.debug = True
-    app.run(host = "0.0.0.0")
+	import atexit
+	atexit.register(clear_led)
+	app.debug = True
+	try:
+		app.run(host = "0.0.0.0")
+	except KeyboardInterrupt:
+		clear_led()
+		raise

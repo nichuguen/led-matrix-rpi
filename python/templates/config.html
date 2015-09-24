@@ -24,21 +24,34 @@
 {% endfor %}
 </select></div>
 </div>
-<div class="form-group">
-<label for="r" class="col-sm-2 control-label">Rouge:</label>    <div class="col-sm-10">
-<input type="number" name="r" min="0" max="255" value="255" class="form-control"/>
-</div>
-</div>
-<div class="form-group">
-<label for="g" class="col-sm-2 control-label">Vert:</label>    <div class="col-sm-10">
-<input type="number" name="g" min="0" max="255" value="255" class="form-control"/>
-</div>
-</div>
-<div class="form-group">
-<label for="b" class="col-sm-2 control-label">Bleu:</label>    <div class="col-sm-10">
-<input type="number" name="b" min="0" max="255" value="255" class="form-control"/>
-</div>
-</div>    <div class="col-sm-offset-2 col-sm-10">
+ <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="r" checked> Rouge
+        </label>
+      </div>
+    </div>
+  </div>
+   <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="g" checked> Vert
+        </label>
+      </div>
+    </div>
+  </div>
+ <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="b" checked> Bleu
+        </label>
+      </div>
+    </div>
+  </div>
+<div class="col-sm-offset-2 col-sm-10">
 <button type="submit" class="btn btn-default">Envoyer</button>
 </form>
 </div>
