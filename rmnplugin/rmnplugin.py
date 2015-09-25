@@ -33,15 +33,17 @@ class RmnPlugin (GObject.Object, Peas.Activatable):
 	'''
 	def playing_song_changed(self, shell, entry):
 		print("Song changed")
+
 		song = RmnPlugin.get_song_info(None, entry)
 		print( song )
-		Dispatcher.send_song(song)
+		#Dispatcher.send_song(song)
 		self.last_song = song
-			
+				
 	'''
 	callback for ShellPlayer's playing-changed (started/stopped)
 	'''
 	def playing_changed(self, shell, playing):
+		print("playing changed")
 		if not playing:
 			Dispatcher.send_stop()
 		else:
